@@ -1,7 +1,7 @@
 import moxios from 'moxios';
 
 import { storeFactory } from '../../test/testUtils';
-import { getSecretWord } from './';
+import { getSecretWord } from './index';
 
 describe('getSecretWord action creator', () => {
   beforeEach(() => {
@@ -21,10 +21,9 @@ describe('getSecretWord action creator', () => {
       request.respondWith({
         status: 200,
         response: secretWord
-      })
+      });
 
-      return store
-        .dispatch(getSecretWord())
+      return store.dispatch(getSecretWord())
         .then(() => {
           const newState = store.getState();
           expect(newState.secretWord).toBe(secretWord);
